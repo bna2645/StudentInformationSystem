@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Information System</title>
+</head>
+<body>
+<h1>Student List</h1>
+<a th:href="@{/students/add}">+ Student</a> | <a th:href="@{/scores/add}">+ Score</a>
+<table border="1">
+    <tr>
+        <th>Student Code</th>
+        <th>Full Name</th>
+        <th>Address</th>
+        <th>Subject</th>
+        <th>Score 1</th>
+        <th>Score 2</th>
+        <th>Grade</th>
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.studentCode}"></td>
+        <td th:text="${student.fullName}"></td>
+        <td th:text="${student.address}"></td>
+        <td>
+            <span th:each="score : ${student.studentScores}" th:text="${score.subject.subjectName} + ', '"></span>
+        </td>
+        <td>
+            <span th:each="score : ${student.studentScores}" th:text="${score.score1} + ', '"></span>
+        </td>
+        <td>
+            <span th:each="score : ${student.studentScores}" th:text="${score.score2} + ', '"></span>
+        </td>
+        <td>
+            <span th:each="score : ${student.studentScores}" th:text="${score.grade} + ', '"></span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
